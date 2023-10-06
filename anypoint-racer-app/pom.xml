@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>65a77e52-f86c-44f3-bc4a-d44d954e3819</groupId>
     <artifactId>anypoint-racer-app</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>mule-application</packaging>
     <name>anypoint-racer-app</name>
     <properties>
@@ -71,14 +73,20 @@
             <artifactId>mule-apikit-module</artifactId>
             <version>1.9.1</version>
             <classifier>mule-plugin</classifier>
-            <scope/>
+            <scope />
         </dependency>
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
             <version>1.7.1</version>
             <classifier>mule-plugin</classifier>
-            <scope/>
+            <scope />
+        </dependency>
+        <dependency>
+            <groupId>com.mulesoft.connectors</groupId>
+            <artifactId>anypoint-mq-connector</artifactId>
+            <version>4.0.3</version>
+            <classifier>mule-plugin</classifier>
         </dependency>
     </dependencies>
 </project>
