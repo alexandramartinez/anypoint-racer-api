@@ -19,10 +19,12 @@
             <on-error-propagate type="APIKIT:BAD_REQUEST">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Bad request"}]]></ee:set-payload>
+{message: "Bad request"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">400</ee:set-variable>
@@ -32,10 +34,12 @@ output application/json
             <on-error-propagate type="APIKIT:NOT_FOUND">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Resource not found"}]]></ee:set-payload>
+{message: "Resource not found"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">404</ee:set-variable>
@@ -45,10 +49,12 @@ output application/json
             <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Method not allowed"}]]></ee:set-payload>
+{message: "Method not allowed"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">405</ee:set-variable>
@@ -58,10 +64,12 @@ output application/json
             <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Not acceptable"}]]></ee:set-payload>
+{message: "Not acceptable"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">406</ee:set-variable>
@@ -71,10 +79,12 @@ output application/json
             <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Unsupported media type"}]]></ee:set-payload>
+{message: "Unsupported media type"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">415</ee:set-variable>
@@ -84,10 +94,12 @@ output application/json
             <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
                 <ee:transform doc:name="Transform Message">
                     <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
+                        <ee:set-payload>
+                            <![CDATA[%dw 2.0
 output application/json
 ---
-{message: "Not Implemented"}]]></ee:set-payload>
+{message: "Not Implemented"}]]>
+                        </ee:set-payload>
                     </ee:message>
                     <ee:variables>
                         <ee:set-variable variableName="httpStatus">501</ee:set-variable>
@@ -96,39 +108,13 @@ output application/json
             </on-error-propagate>
         </error-handler>
     </flow>
-    <flow name="anypoint-racer-api-console">
-        <http:listener config-ref="anypoint-racer-api-httpListenerConfig" path="/console/*">
-            <http:response statusCode="#[vars.httpStatus default 200]">
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
-            </http:response>
-            <http:error-response statusCode="#[vars.httpStatus default 500]">
-                <http:body>#[payload]</http:body>
-                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
-            </http:error-response>
-        </http:listener>
-        <apikit:console config-ref="anypoint-racer-api-config" />
-        <error-handler>
-            <on-error-propagate type="APIKIT:NOT_FOUND">
-                <ee:transform doc:name="Transform Message">
-                    <ee:message>
-                        <ee:set-payload><![CDATA[%dw 2.0
-output application/json
----
-{message: "Resource not found"}]]></ee:set-payload>
-                    </ee:message>
-                    <ee:variables>
-                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
-                    </ee:variables>
-                </ee:transform>
-            </on-error-propagate>
-        </error-handler>
-    </flow>
     <flow name="post:\race\(raceId)\token:text\plain:anypoint-racer-api-config">
-        <ee:transform doc:name="Transform Message">
-            <ee:variables>
-                <ee:set-variable variableName="raceId">attributes.uriParams.'raceId'</ee:set-variable>
-            </ee:variables>
+        <ee:transform doc:name="Response">
+            <ee:message>
+                <ee:set-payload resource="dw/response.dwl" />
+            </ee:message>
         </ee:transform>
-        <logger level="INFO" message="post:\race\(raceId)\token:text\plain:anypoint-racer-api-config" />
+        <logger level="INFO" message="Finished" />
+        <logger level="INFO" message="#[payload]" />
     </flow>
 </mule>
