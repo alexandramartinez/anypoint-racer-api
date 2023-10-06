@@ -5,7 +5,7 @@
   "tags" : [ ],
   "groupId" : "65a77e52-f86c-44f3-bc4a-d44d954e3819",
   "assetId" : "anypoint-racer-api",
-  "version" : "1.0.0",
+  "version" : "1.0.0-SNAPSHOT",
   "apiVersion" : "v1",
   "dependencies" : [ ],
   "descriptorVersion" : "1.0.0"
