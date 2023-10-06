@@ -1,2 +1,21 @@
 #%RAML 1.0
-title: anypoint-racer-api
+title: Alex Racer API
+
+/race:
+  /{raceId}:
+    /token:
+      post:
+        body:
+          text/plain:
+            type: string
+            description: latest race token for the Anypoint Race with ID in the URI parameter
+            example: 4730ab21-050b-43aa-9522-fa9d77a87853
+        responses:
+          200:
+            body:
+              application/json:
+                type: object
+                properties:
+                  racerId:
+                    type: string
+                    description: Your racer ID which is returned by the Anypoint Race API /register resource
