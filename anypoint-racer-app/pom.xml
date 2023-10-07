@@ -25,7 +25,27 @@
                 <artifactId>mule-maven-plugin</artifactId>
                 <version>${mule.maven.plugin.version}</version>
                 <extensions>true</extensions>
-                <configuration/>
+                <configuration>
+                    <cloudHubDeployment>
+                        <uri>https://anypoint.mulesoft.com</uri>
+                        <muleVersion>4.4.0</muleVersion>
+                        <applicationName>anypoint-racer-app</applicationName>
+                        <environment>Sandbox</environment>
+                        <workerType>MICRO</workerType>
+                        <region>us-east-1</region>
+                        <workers>1</workers>
+                        <objectStoreV2>true</objectStoreV2>
+                        <connectedAppClientId>${connectedapp.client.id}</connectedAppClientId>
+                        <connectedAppClientSecret>${connectedapp.client.secret}</connectedAppClientSecret>
+                        <connectedAppGrantType>client_credentials</connectedAppGrantType>
+                        <properties>
+                            <anypointmq.clientId>${connectedapp.client.id}</anypointmq.clientId>
+                            <anypointmq.clientSecret>${connectedapp.client.secret}</anypointmq.clientSecret>
+                            <anypointmq.orgId>${org.id}</anypointmq.orgId>
+                            <anypointmq.envId>${env.id}</anypointmq.envId>
+                        </properties>
+                    </cloudHubDeployment>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -107,14 +107,12 @@ output application/json
         </error-handler>
     </flow>
     <flow name="post:\race\(raceId)\token:text\plain:anypoint-racer-api-config">
-        <async>
-            <anypoint-mq:publish destination="${anypointmq.queue}" config-ref="race-mq" doc:name="Publish" doc:id="gxtizf" />
-        </async>
         <ee:transform doc:name="Response">
             <ee:message>
                 <ee:set-payload resource="dw/response.dwl" />
             </ee:message>
         </ee:transform>
+        <anypoint-mq:publish destination="${anypointmq.queue}" config-ref="race-mq" doc:name="Publish" doc:id="gxtizf" />
         <logger level="INFO" message="Finished" />
         <logger level="INFO" message="#[payload]" />
     </flow>
