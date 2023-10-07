@@ -23,8 +23,7 @@ jobs:
           distribution: "zulu"
           java-version: 8
       - name: Build with Maven
-        working-directory: ./anypoint-racer-app
-        run: mvn -B package --file pom.xml -DskipMunitTests
+        run: mvn -B package --file anypoint-racer-app/pom.xml -DskipMunitTests
       - name: Stamp artifact file name with commit hash
         working-directory: ./anypoint-racer-app
         run: |
