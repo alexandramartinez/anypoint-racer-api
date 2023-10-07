@@ -23,16 +23,14 @@ jobs:
           distribution: "zulu"
           java-version: 8
       - name: Build with Maven
-        run: mvn -B package --file anypoint-racer-app/pom.xml -DskipMunitTests
+        run: mvn -B package pom.xml -DskipMunitTests
       - name: Stamp artifact file name with commit hash
-        working-directory: ./anypoint-racer-app
         run: |
           artifactName1=$(ls target/*.jar | head -1)
           commitHash=$(git rev-parse --short "$GITHUB_SHA")
           artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/-$commitHash.jar/g")
           mv $artifactName1 $artifactName2
       - name: Deploy
-        working-directory: ./anypoint-racer-app
         run: |
           artifactName=$(ls *.jar | head -1)
           mvn deploy -DskipMunitTests -DmuleDeploy \

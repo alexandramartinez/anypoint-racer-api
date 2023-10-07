@@ -4,7 +4,7 @@
     <http:listener-config name="anypoint-racer-api-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8081" />
     </http:listener-config>
-    <apikit:config name="anypoint-racer-api-config" api="resource::65a77e52-f86c-44f3-bc4a-d44d954e3819:anypoint-racer-api:1.0.0-SNAPSHOT:raml:zip:anypoint-racer-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <apikit:config name="anypoint-racer-api-config" api="resource::ae6d7954-6fc2-4f3e-8777-80ff8aabd859:racer-api:1.0.0:raml:zip:racer-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <anypoint-mq:config name="race-mq">
         <anypoint-mq:connection url="#['https://mq-us-east-1.anypoint.mulesoft.com/api/v1/organizations/$(Mule::p('anypointmq.orgId'))/environments/$(Mule::p('anypointmq.envId'))']" clientId="${anypointmq.clientId}" clientSecret="${anypointmq.clientSecret}" />
     </anypoint-mq:config>
