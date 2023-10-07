@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout this repo
@@ -23,37 +23,17 @@ jobs:
           distribution: "zulu"
           java-version: 8
       - name: Build with Maven
-        working-directory: anypoint-racer-app
+        working-directory: ./anypoint-racer-app
         run: mvn -B package --file pom.xml -DskipMunitTests
       - name: Stamp artifact file name with commit hash
+        working-directory: ./anypoint-racer-app
         run: |
           artifactName1=$(ls target/*.jar | head -1)
           commitHash=$(git rev-parse --short "$GITHUB_SHA")
           artifactName2=$(ls target/*.jar | head -1 | sed "s/.jar/-$commitHash.jar/g")
           mv $artifactName1 $artifactName2
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: artifacts
-          path: target/*.jar
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v3
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-      - uses: actions/download-artifact@v3
-        with:
-          name: artifacts
       - name: Deploy
+        working-directory: ./anypoint-racer-app
         run: |
           artifactName=$(ls *.jar | head -1)
           mvn deploy -DskipMunitTests -DmuleDeploy \
