@@ -11,3 +11,9 @@ This is the [Racer API](https://anypoint.mulesoft.com/exchange/portals/anypoint-
 - [Anypoint Race API GitHub repo](https://github.com/rhoegg/anypoint-race-api)
 
 Anypoint Race was created by Ryan Hoegg! Thanku ryan ~
+
+## Similar repos
+
+[![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=anypoint-race-api-postman&theme=codeSTACKr)](https://github.com/alexandramartinez/anypoint-race-api-postman)
+[![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=anypoint-race-api-mulesoft&theme=codeSTACKr)](https://github.com/alexandramartinez/anypoint-race-api-mulesoft)
+[![](https://github-readme-stats.vercel.app/api/pin/?username=alexandramartinez&repo=anypoint-racer-api-s3&theme=codeSTACKr)](https://github.com/alexandramartinez/anypoint-racer-api-s3)
